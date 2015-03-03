@@ -5,7 +5,7 @@ save=[]; %it will be a container to save every MSE from each training in the whi
 %loop
 k=[]; % it will be a container to save the training times in the while loop
 kk=0; %the initial value using to produce the training times
->> nn=rand(2,1000)*2-1; %randomly chose x1 and x2 in the range [-1,1]
+nn=rand(2,1000)*2-1; %randomly chose x1 and x2 in the range [-1,1]
 x=[n;nn]; %put the training time and MSE together
 y=w'*x; %calculate the actual output y
 d=[0,3,-2]*x; %calculate the desired output d
@@ -26,7 +26,7 @@ train=[k;save]; %training times and MSE are saved in this matrix
 end
 plot(train(1,:),train(2,:)) %plot MSE vs. numbers of training
 ylabel('MSE') %label the axis of x and y;
->> xlabel('numbers of training')
+xlabel('numbers of training')
 % the next part is using the optimal weights to calculate the MSE. All the setting are
 %the same as above.
 n=ones(1,1000);
