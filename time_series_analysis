@@ -1,0 +1,17 @@
+data=load('pdo_index.txt'); %load PDO datas from http://jisao.washington.edu/pdo
+ave=mean(data); %calculate the means of every months
+a=repmat(ave,109,1);
+remove=data-a; %let the diference between months could be eliminate from data
+b=reshape(remove',1,[]);
+t=1:1308; %time series, total 1308 months
+row=reshape(data',1,[]);
+de=0:1307;
+p=[ones(1308,1) t']\b'; %calculate the influence of the trend
+beta=repmat(p(2),1,1308);
+detrend=de.*beta;
+detrenddata=b-detrend; %eliminating the trend from data
+spectrum=fft(detrenddata); %transform the data to continuous function of frequency
+re=real(spectrum); %because the number we got after transformation are complex %numbers, so I draw the real part out
+plot(t,re) % plot the spectrum
+ylabel('Amplitude (dB)') %labeled x and y axis
+xlabel('Period (month)')
